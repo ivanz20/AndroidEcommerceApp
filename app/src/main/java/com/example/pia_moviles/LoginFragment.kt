@@ -6,6 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+import com.example.pia_moviles.Modelos.UsuarioModel
+import com.example.pia_moviles.Servicios.RestEngine
+import com.example.pia_moviles.Servicios.UsuarioServicio
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -37,9 +45,55 @@ class LoginFragment : Fragment() {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_login, container, false)
 
+
+
         view.findViewById<Button>(R.id.btn_inicio).setOnClickListener{
-            var navRegister = activity as FragmentNavigation
-            navRegister.navigateFrag(HomeFragment(),false)
+            var correo = view?.findViewById<EditText>(R.id.editTextUsuario) as EditText
+            var password = view?.findViewById<EditText>(R.id.editTextTextPassword2) as EditText
+
+            if(correo.text.isEmpty() || password.text.isEmpty()){
+                Toast.makeText(getContext(), "Llena todos los campos", Toast.LENGTH_SHORT).show()
+            }else{
+                val ServicioUsuario: UsuarioServicio = RestEngine.getRestEngine().create(
+                    UsuarioServicio::class.java)
+                val result: Call<UsuarioModel> = ServicioUsuario.InicioSesion(
+                    UsuarioModel(
+                        null,
+                        null,
+                        null,
+                        correo.text.toString(),
+                        password.text.toString(),
+                        null,
+                        null,
+                        null,
+                        null,
+                        null
+                    )
+                )
+                result.enqueue(object : Callback<UsuarioModel> {
+                    override fun onResponse(call: Call<UsuarioModel>, response: Response<UsuarioModel>) {
+                        val item = response.body()
+                        if (item == null) {
+                            Toast.makeText(getContext(), "Credenciales Erroneas", Toast.LENGTH_SHORT).show()
+                        }
+                        else {
+                            Toast.makeText(getContext(), "Bienvenido", Toast.LENGTH_SHORT).show()
+                            var navRegister = activity as FragmentNavigation
+                            navRegister.navigateFrag(HomeFragment(),false)
+                        }
+                    }
+
+                    override fun onFailure(call: Call<UsuarioModel>, t: Throwable) {
+                        println(t.toString())
+                    }
+                })
+
+
+
+
+            }
+
+
         }
 
         view.findViewById<Button>(R.id.btn_registrarse).setOnClickListener{

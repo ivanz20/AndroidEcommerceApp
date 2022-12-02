@@ -9,7 +9,7 @@ class MainActivity : AppCompatActivity(), FragmentNavigation {
         setContentView(R.layout.activity_main)
 
         supportFragmentManager.beginTransaction()
-            .add(R.id.container,ArticlesFragment())
+            .add(R.id.container,LoginFragment())
             .commit()
     }
 

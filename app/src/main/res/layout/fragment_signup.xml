@@ -15,15 +15,14 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
             android:layout_marginLeft="20dp"
+            android:layout_marginTop="170dp"
             android:layout_marginRight="20dp"
+            app:boxBackgroundColor="@color/white"
             app:boxCornerRadiusBottomEnd="30dp"
             app:boxCornerRadiusBottomStart="30dp"
             app:boxCornerRadiusTopEnd="50dp"
-            app:boxCornerRadiusTopStart="30dp"
-            app:boxBackgroundColor="@color/white"
-            >
+            app:boxCornerRadiusTopStart="30dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textNombres"
@@ -40,15 +39,14 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="140dp"
             android:layout_marginLeft="20dp"
+            android:layout_marginTop="240dp"
             android:layout_marginRight="20dp"
+            app:boxBackgroundColor="@color/white"
             app:boxCornerRadiusBottomEnd="30dp"
             app:boxCornerRadiusBottomStart="30dp"
             app:boxCornerRadiusTopEnd="30dp"
-            app:boxCornerRadiusTopStart="30dp"
-            app:boxBackgroundColor="@color/white"
-            >
+            app:boxCornerRadiusTopStart="30dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textApellidos"
@@ -61,10 +59,20 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <ImageView
+            android:id="@+id/fotoRegistro"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_marginLeft="130dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/formas"
+            tools:ignore="ImageContrastCheck"
+            tools:src="@tools:sample/avatars" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="210dp"
+            android:layout_marginTop="310dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             app:boxCornerRadiusBottomEnd="30dp"
@@ -88,7 +96,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="280dp"
+            android:layout_marginTop="380dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             app:boxCornerRadiusBottomEnd="30dp"
@@ -103,7 +111,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-black"
-                android:hint="@string/contrase_a2">
+                android:hint="@string/contrase_a2"
+                android:inputType="textPassword">
 
             </com.google.android.material.textfield.TextInputEditText>
 
@@ -112,7 +121,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="350dp"
+            android:layout_marginTop="450dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             app:boxCornerRadiusBottomEnd="30dp"
@@ -133,13 +142,12 @@
             </com.google.android.material.textfield.TextInputEditText>
 
         </com.google.android.material.textfield.TextInputLayout>
-
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_cargarfoto"
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="420dp"
+            android:layout_marginTop="510dp"
             android:layout_marginRight="20dp"
             android:text="@string/cargar_foto_de_perfil"
             android:textColor="#FFFFFF"
@@ -148,37 +156,44 @@
             app:strokeColor="#FFFFFF"
             app:strokeWidth="2dp"></com.google.android.material.button.MaterialButton>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_registrarusuario"
-            android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="490dp"
-            android:layout_marginRight="20dp"
-            android:text="@string/registrar"
-            android:textColor="#FFFFFF"
-            app:backgroundTint="@color/black"
-            app:cornerRadius="30dp"
-            app:strokeColor="#FFFFFF"
-            app:strokeWidth="2dp"></com.google.android.material.button.MaterialButton>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_regresarinicio"
-            android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
+        <LinearLayout
+            android:layout_height="60dp" android:orientation="horizontal"
+            android:layout_width="400dp"
+            android:layout_marginTop="580dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="570dp"
-            android:layout_marginRight="20dp"
-            android:text="Regresar"
-            android:textColor="#FFFFFF"
-            app:backgroundTint="@color/black"
-            app:cornerRadius="30dp"
-            app:strokeColor="#FFFFFF"
-            app:strokeWidth="2dp"></com.google.android.material.button.MaterialButton>
+            android:layout_marginRight="20dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_registrarusuario"
+                android:layout_width="160dp"
+                android:layout_height="match_parent"
+                android:text="@string/registrar"
+                android:textColor="#FFFFFF"
+                app:backgroundTint="@color/black"
+                app:cornerRadius="30dp"
+                app:strokeColor="#FFFFFF"
+                app:strokeWidth="2dp">
+
+            </com.google.android.material.button.MaterialButton >
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_regresarinicio"
+                android:layout_width="160dp"
+                android:layout_height="match_parent"
+                android:text="Regresar"
+                android:textColor="#FFFFFF"
+                android:layout_marginLeft="30dp"
+                app:backgroundTint="@color/black"
+                app:cornerRadius="30dp"
+                app:strokeColor="#FFFFFF"
+                app:strokeWidth="2dp"></com.google.android.material.button.MaterialButton>
+
+        </LinearLayout>
 
     </RelativeLayout>
+
+
 
 
 

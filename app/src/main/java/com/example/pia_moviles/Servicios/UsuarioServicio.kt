@@ -16,6 +16,6 @@ interface UsuarioServicio {
     fun InicioSesion(@Body user: UsuarioModel): Call<UsuarioModel>
 
     @POST("EditarUsuario.php")
-    fun EditarUsuario(@Body user: UsuarioModel, @Query("id") id: Int?): Call<UsuarioModel>
+    fun EditarUsuario(@Body user: UsuarioModel): Call<UsuarioModel>
 
 }

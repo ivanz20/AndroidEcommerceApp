@@ -15,4 +15,12 @@
     <string name="registrar">Registrar</string>
     <string name="todo">TODO</string>
     <string name="registrarse">Registrarse</string>
+
+    <string-array name="categorias">
+        <item>Playeras</item>
+        <item>Camisas</item>
+        <item>Vestidos</item>
+        <item>Pantalones</item>
+        <item>Sombreros</item>
+    </string-array>
 </resources>

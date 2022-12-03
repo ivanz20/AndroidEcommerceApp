@@ -43,6 +43,7 @@ class NavBar : AppCompatActivity() {
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
+
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_nav_bar)
@@ -78,7 +79,7 @@ class NavBar : AppCompatActivity() {
         var tvcorreo = vista.findViewById<TextView>(R.id.CorreoUser)
         tvname.setText(nombrecompleto.toString())
         tvcorreo.setText(emailuser.toString())
-2
+
 
         if(!img!!.isEmpty()) {
             val img2 = img.decodeBase64()?.toByteArray()

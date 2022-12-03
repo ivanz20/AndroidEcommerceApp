@@ -13,9 +13,11 @@
 
     <fragment
         android:id="@+id/nav_Perfil"
-        android:name="com.example.pia_moviles.Activity.ui.gallery.GalleryFragment"
+        android:name="com.example.pia_moviles.Activity.ui.gallery.PerfilUsuarioFragment"
         android:label="Mi Perfil"
-        tools:layout="@layout/fragment_perfil_usuario" />
+        tools:layout="@layout/fragment_perfil_usuario" >
+       
+    </fragment>
 
     <fragment
         android:id="@+id/nav_slideshow"

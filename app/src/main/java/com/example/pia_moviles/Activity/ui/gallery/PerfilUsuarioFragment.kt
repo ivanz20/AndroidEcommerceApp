@@ -1,14 +1,13 @@
 package com.example.pia_moviles.Activity.ui.gallery
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.fragment.app.Fragment
 import com.example.pia_moviles.EditarInformacionFragment
-import com.example.pia_moviles.FragmentNavigation
-import com.example.pia_moviles.R
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -38,11 +37,10 @@ class PerfilUsuarioFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        var view = inflater.inflate(R.layout.fragment_perfil_usuario, container, false)
+        var view = inflater.inflate(com.example.pia_moviles.R.layout.fragment_perfil_usuario, container, false)
 
-        view?.findViewById<Button>(R.id.btnEditar)?.setOnClickListener{
-            var navRegister = activity as FragmentNavigation
-            navRegister.navigateFrag(EditarInformacionFragment(),false)
+        view?.findViewById<Button>(com.example.pia_moviles.R.id.btnEditar)?.setOnClickListener{
+            requireActivity().supportFragmentManager.beginTransaction().replace((requireView().parent as ViewGroup).id, EditarInformacionFragment()).commit()
         }
         // Inflate the layout for this fragment
         return view

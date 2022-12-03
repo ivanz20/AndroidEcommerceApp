@@ -25,7 +25,7 @@
             tools:src="@tools:sample/avatars" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/txtNombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="250dp"
@@ -41,14 +41,13 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="290dp"
             android:text="ivanzavala@hotmail.com"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
             app:fontFamily="sans-serif-light"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/txtNombre" />
 
         <Button
             android:id="@+id/btnEditar"
@@ -97,9 +96,9 @@
             android:layout_height="50dp"
             android:layout_marginTop="24dp"
             android:text="Registrar Producto"
-            app:cornerRadius="40dp"
             android:textColor="#090909"
             app:backgroundTint="@color/white"
+            app:cornerRadius="40dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnMisProductos" />

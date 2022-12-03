@@ -1,22 +1,25 @@
 package com.example.pia_moviles
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.Toast
+import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
+import com.example.pia_moviles.Activity.ui.gallery.PerfilUsuarioFragment
 import com.example.pia_moviles.Modelos.UsuarioModel
 import com.example.pia_moviles.Servicios.RestEngine
 import com.example.pia_moviles.Servicios.UsuarioServicio
+import okio.ByteString.Companion.decodeBase64
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -41,16 +44,12 @@ class EditarInformacionFragment : Fragment() {
 
     lateinit var fotoElegida : ByteArray
     lateinit var  fotoRegistro2 : ImageView
+    lateinit var tvfoto : ImageView
+    lateinit var tvname : TextView
 
     private val responseLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ activityResult ->
         if(activityResult.resultCode == Activity.RESULT_OK){
             fotoRegistro2.setImageURI(activityResult.data?.data)
-            println(activityResult.data?.data)
-            val bitmaps = (fotoRegistro2.getDrawable() as BitmapDrawable).bitmap
-            val comprime = ByteArrayOutputStream()
-            bitmaps.compress(Bitmap.CompressFormat.JPEG, 10, comprime)
-            var imageByteArray: ByteArray = comprime.toByteArray()
-            fotoElegida = imageByteArray;
         }
     }
 
@@ -62,6 +61,7 @@ class EditarInformacionFragment : Fragment() {
         }
     }
 
+    @SuppressLint("WrongThread")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -70,6 +70,11 @@ class EditarInformacionFragment : Fragment() {
 
 
         var view = inflater.inflate(R.layout.fragment_editar_informacion, container, false)
+
+
+         tvfoto = view?.findViewById<ImageView>(R.id.fotoEditar)!!
+         tvname = view?.findViewById<TextView>(R.id.editarNombre)
+         loadData()
 
         view?.findViewById<Button>(R.id.btn_editarfoto)?.setOnClickListener{
             val intent = Intent(Intent.ACTION_PICK)
@@ -81,8 +86,18 @@ class EditarInformacionFragment : Fragment() {
         var names = view?.findViewById<EditText>(R.id.editarNombre) as EditText
         var password = view?.findViewById<EditText>(R.id.editarcontra) as EditText
         var fotoRegistro = view?.findViewById<ImageView>(R.id.fotoEditar) as ImageView
-        var id = 1;
         fotoRegistro2 = fotoRegistro
+
+        var pref: SharedPreferences? = null
+        pref = getContext()?.getSharedPreferences("usuario", AppCompatActivity.MODE_PRIVATE)
+
+        var iduser = pref?.getInt("Id",0)
+
+        val bitmaps = (fotoRegistro2.getDrawable() as BitmapDrawable).bitmap
+        val comprime = ByteArrayOutputStream()
+        bitmaps.compress(Bitmap.CompressFormat.JPEG, 10, comprime)
+        var imageByteArray: ByteArray = comprime.toByteArray()
+        fotoElegida = imageByteArray;
 
         view?.findViewById<Button>(R.id.btn_editardata)?.setOnClickListener {
             if (names.text.toString().isEmpty() || password.text.toString().isEmpty()) {
@@ -94,13 +109,13 @@ class EditarInformacionFragment : Fragment() {
                     val encodedString:String = Base64.getEncoder().encodeToString(fotoElegida)
                     val result: Call<UsuarioModel> = ServicioUsuario.EditarUsuario(
                         UsuarioModel(
-                            id,
+                            iduser,
                             names.text.toString(),
                             null,
                            null,
                             password.text.toString(),
                             null,
-                            encodedString.toString(),
+                            encodedString,
                             null,
                             null,
                             null
@@ -113,8 +128,8 @@ class EditarInformacionFragment : Fragment() {
                                 if(item.status =="exists"){ Toast.makeText(getContext(), "Ya esta registrado este email", Toast.LENGTH_SHORT).show()
                                 }else{
                                     Toast.makeText(getContext(), "Usuario Editado", Toast.LENGTH_SHORT).show()
-                                    var navRegister = activity as FragmentNavigation
-                                    navRegister.navigateFrag(PerfilUsuarioFragment(),false)
+                                    requireActivity().supportFragmentManager.beginTransaction().replace((requireView().parent as ViewGroup).id, PerfilUsuarioFragment()).commit()
+
                                 }
                             }
                             else {
@@ -134,13 +149,31 @@ class EditarInformacionFragment : Fragment() {
             }
         }
         view?.findViewById<Button>(R.id.btn_regresarperfil)?.setOnClickListener{
-            var navRegister = activity as FragmentNavigation
-            navRegister.navigateFrag(PerfilUsuarioFragment(),false)
+            requireActivity().supportFragmentManager.beginTransaction().replace((requireView().parent as ViewGroup).id, com.example.pia_moviles.Activity.ui.gallery.PerfilUsuarioFragment()).commit()
+
         }
 
         return  view
     }
 
+    private fun loadData() {
+        var pref: SharedPreferences? = null
+        pref = getContext()?.getSharedPreferences("usuario", AppCompatActivity.MODE_PRIVATE)
+
+        var img = pref?.getString("Image","")
+        var nameuser = pref?.getString("Nombre","")
+
+
+
+        if(!img!!.isEmpty()) {
+            val img2 = img.decodeBase64()?.toByteArray()
+            val imageBitmap: Bitmap? = img2?.let { BitmapFactory.decodeByteArray(img2, 0, it.size) }
+            tvfoto?.setImageBitmap(imageBitmap)
+            tvname?.setText(nameuser)
+        }
+
+
+    }
     fun isValidPasswordFormat(password: String): Boolean {
         val passwordREGEX = Pattern.compile("^" +
                 "(?=.*[0-9])" +         //at least 1 digit

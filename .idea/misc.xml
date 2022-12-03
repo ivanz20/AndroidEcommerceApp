@@ -5,12 +5,13 @@
       <map>
         <entry key="..\:/Users/ivanz/.gradle/caches/transforms-3/1fe4a819ffe8fd15773e6169e27c9922/transformed/material-1.6.1/res/drawable/mtrl_ic_error.xml" value="0.2555" />
         <entry key="..\:/Users/ivanz/.gradle/caches/transforms-3/d58c32f2d48308f4a51dd3976936e834/transformed/material-1.6.1/res/drawable/mtrl_ic_error.xml" value="0.2265" />
+        <entry key="..\:/Users/ivanz/Desktop/pia_moviles/app/src/main/res/drawable/ic_perfil_background.xml" value="0.162" />
         <entry key="..\:/Users/ivanz/Desktop/pia_moviles/app/src/main/res/layout/activity_main.xml" value="0.21693840579710144" />
         <entry key="..\:/Users/ivanz/Desktop/pia_moviles/app/src/main/res/layout/activity_nav_bar.xml" value="0.152" />
         <entry key="..\:/Users/ivanz/Desktop/pia_moviles/app/src/main/res/layout/app_bar_nav_bar.xml" value="0.1" />
         <entry key="..\:/Users/ivanz/Desktop/pia_moviles/app/src/main/res/layout/content_nav_bar.xml" value="0.12526720820863618" />
         <entry key="..\:/Users/ivanz/Desktop/pia_moviles/app/src/main/res/layout/fragment_articles.xml" value="0.1" />
-        <entry key="..\:/Users/ivanz/Desktop/pia_moviles/app/src/main/res/layout/fragment_editar_informacion.xml" value="0.176" />
+        <entry key="..\:/Users/ivanz/Desktop/pia_moviles/app/src/main/res/layout/fragment_editar_informacion.xml" value="0.264" />
         <entry key="..\:/Users/ivanz/Desktop/pia_moviles/app/src/main/res/layout/fragment_home.xml" value="0.264" />
         <entry key="..\:/Users/ivanz/Desktop/pia_moviles/app/src/main/res/layout/fragment_login.xml" value="0.18432971014492755" />
         <entry key="..\:/Users/ivanz/Desktop/pia_moviles/app/src/main/res/layout/fragment_mis_productos.xml" value="0.15946985891406584" />
@@ -23,6 +24,7 @@
         <entry key="..\:/Users/ivanz/Desktop/pia_moviles/app/src/main/res/layout/nav_header_nav_bar.xml" value="0.2" />
         <entry key="..\:/Users/ivanz/Desktop/pia_moviles/app/src/main/res/layout/product_card_view.xml" value="0.264" />
         <entry key="..\:/Users/ivanz/Desktop/pia_moviles/app/src/main/res/layout/product_card_view2.xml" value="0.1" />
+        <entry key="..\:/Users/ivanz/Desktop/pia_moviles/app/src/main/res/menu/activity_main_drawer.xml" value="0.536" />
         <entry key="..\:/Users/ivanz/Desktop/pia_moviles/app/src/main/res/menu/nav_bar.xml" value="0.176" />
       </map>
     </option>

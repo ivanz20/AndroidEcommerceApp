@@ -17,11 +17,11 @@
             android:id="@+id/fotoEditar"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/formas"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:background="@drawable/formas"
             tools:src="@tools:sample/avatars" />
 
         <com.google.android.material.textfield.TextInputLayout

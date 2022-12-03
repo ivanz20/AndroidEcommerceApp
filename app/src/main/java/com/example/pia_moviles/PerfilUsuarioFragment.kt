@@ -34,6 +34,7 @@ class PerfilUsuarioFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         var view = inflater.inflate(R.layout.fragment_perfil_usuario, container, false)
 
         view?.findViewById<Button>(R.id.btnEditar)?.setOnClickListener{

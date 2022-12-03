@@ -16,12 +16,12 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="330dp"
-                android:src="@drawable/fotohome"
                 android:scaleType="fitXY"
-                ></ImageView>
+                android:src="@drawable/fotohome"></ImageView>
 
         </RelativeLayout>
 

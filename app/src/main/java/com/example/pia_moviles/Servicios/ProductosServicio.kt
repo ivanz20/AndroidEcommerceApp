@@ -15,7 +15,9 @@ interface ProductosServicio {
     fun GetProductById(@Query("id") id: Int?): Call<ProductoModel>
 
     @GET("Busqueda.php")
-    fun SearchByName(@Query("nombre") id: String?): Call< List<ProductoModel>>
+    fun SearchByName(@Query("nombre") id: String?): Call<List<ProductoModel>>
 
+    @GET("GetProductByUser.php")
+    fun GetProductsByUser(@Query("iduser") iduser: Int?): Call<List<ProductoModel>>
 
 }

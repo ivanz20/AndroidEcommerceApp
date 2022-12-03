@@ -1,10 +1,23 @@
 package com.example.pia_moviles
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.pia_moviles.Adaptadores.MisProductosAdapter
+import com.example.pia_moviles.Adaptadores.ProductAdapter
+import com.example.pia_moviles.Modelos.ProductoModel
+import com.example.pia_moviles.Servicios.ProductosServicio
+import com.example.pia_moviles.Servicios.RestEngine
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,7 +47,50 @@ class MisProductosFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_mis_productos, container, false)
+        var view = inflater.inflate(R.layout.fragment_mis_productos, container, false)
+
+        var recyclerView: RecyclerView = view.findViewById(R.id.rv_misproductos)
+//
+        recyclerView.setHasFixedSize(true)
+        recyclerView.layoutManager = GridLayoutManager(context,
+            2,
+            GridLayoutManager.VERTICAL,
+            false)
+
+
+        val ProductList : ArrayList<ProductoModel>
+
+        var pref: SharedPreferences? = null
+        pref = getContext()?.getSharedPreferences("usuario", AppCompatActivity.MODE_PRIVATE)
+
+        var iduser = pref?.getInt("Id",0)
+        val ServiciosProducto: ProductosServicio = RestEngine.getRestEngine().create(
+            ProductosServicio::class.java)
+        var result: Call<List<ProductoModel>> = ServiciosProducto.GetProductsByUser(33)
+        result.enqueue(object : Callback<List<ProductoModel>> {
+
+            override fun onResponse(call: Call<List<ProductoModel>>, response: Response<List<ProductoModel>>) {
+                val result = response.body()
+                if (result != null) {
+                    Toast.makeText(getContext(), "ola", Toast.LENGTH_SHORT).show()
+
+                }
+                else {
+                    Toast.makeText(getContext(), "Hubo un error en la busqueda de tus productos", Toast.LENGTH_SHORT).show()
+
+                }
+            }
+
+            override fun onFailure(call: Call<List<ProductoModel>>, t: Throwable) {
+                println(t.toString())
+            }
+        })
+
+//        val adapter = MisProductosAdapter(ProductList)
+//        recyclerView.adapter = adapter
+
+
+        return view
     }
 
     companion object {

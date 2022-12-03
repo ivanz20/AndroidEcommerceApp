@@ -1,12 +1,21 @@
 package com.example.pia_moviles.Activity.ui.gallery
 
+import android.content.SharedPreferences
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.pia_moviles.EditarInformacionFragment
+import com.example.pia_moviles.R
+import com.example.pia_moviles.RegistroProductosFragment
+import okio.ByteString.Companion.decodeBase64
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -24,6 +33,10 @@ class PerfilUsuarioFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    lateinit var tvfoto : ImageView
+    lateinit var tvname : TextView
+    lateinit var tvEmail : TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -39,13 +52,41 @@ class PerfilUsuarioFragment : Fragment() {
 
         var view = inflater.inflate(com.example.pia_moviles.R.layout.fragment_perfil_usuario, container, false)
 
+        tvfoto = view?.findViewById<ImageView>(R.id.fotoPerfil)!!
+        tvname = view?.findViewById<TextView>(R.id.txtNombre)
+        tvEmail = view?.findViewById<TextView>(R.id.textView3)
+        loadData()
+
         view?.findViewById<Button>(com.example.pia_moviles.R.id.btnEditar)?.setOnClickListener{
             requireActivity().supportFragmentManager.beginTransaction().replace((requireView().parent as ViewGroup).id, EditarInformacionFragment()).commit()
+        }
+
+        view?.findViewById<Button>(R.id.btn_registrarprod)?.setOnClickListener{
+            requireActivity().supportFragmentManager.beginTransaction().replace((requireView().parent as ViewGroup).id, RegistroProductosFragment()).commit()
         }
         // Inflate the layout for this fragment
         return view
     }
 
+    private fun loadData() {
+        var pref: SharedPreferences? = null
+        pref = getContext()?.getSharedPreferences("usuario", AppCompatActivity.MODE_PRIVATE)
+
+        var img = pref?.getString("Image","")
+        var nameuser = pref?.getString("Nombre","")
+        var apellidouser = pref?.getString("Apellido","")
+        var email = pref?.getString("Email","")
+        var nombrecompleto = nameuser + " "  + apellidouser
+        if(!img!!.isEmpty()) {
+            val img2 = img.decodeBase64()?.toByteArray()
+            val imageBitmap: Bitmap? = img2?.let { BitmapFactory.decodeByteArray(img2, 0, it.size) }
+            tvfoto?.setImageBitmap(imageBitmap)
+            tvname?.setText(nombrecompleto)
+            tvEmail?.setText(email)
+        }
+
+
+    }
     companion object {
         /**
          * Use this factory method to create a new instance of

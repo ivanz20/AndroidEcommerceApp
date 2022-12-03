@@ -7,6 +7,8 @@ data class ProductoModel (
         var precio:Float?=null,
         var categoria:String?=null,
         var imagen:String?=null,
-        var created_at:String?=null
+        var created_at:String?=null,
+        var iduser:Int? = null,
+        val status: String?=null
 
-        )
+)

@@ -100,13 +100,20 @@ class EditarInformacionFragment : Fragment() {
         fotoElegida = imageByteArray;
 
         view?.findViewById<Button>(R.id.btn_editardata)?.setOnClickListener {
+
+            val bitmaps2 = (fotoRegistro2.getDrawable() as BitmapDrawable).bitmap
+            val comprime2 = ByteArrayOutputStream()
+            bitmaps2.compress(Bitmap.CompressFormat.JPEG, 10, comprime2)
+            var imageByteArray2: ByteArray = comprime2.toByteArray()
+            var fotoElegida2 = imageByteArray2;
+
             if (names.text.toString().isEmpty() || password.text.toString().isEmpty()) {
                 Toast.makeText(getContext(), "Llena todos los datos", Toast.LENGTH_SHORT).show()
             } else {
                 if (isValidPasswordFormat(password.text.toString())) {
                     val ServicioUsuario: UsuarioServicio = RestEngine.getRestEngine().create(
                         UsuarioServicio::class.java)
-                    val encodedString:String = Base64.getEncoder().encodeToString(fotoElegida)
+                    val encodedString:String = Base64.getEncoder().encodeToString(fotoElegida2)
                     val result: Call<UsuarioModel> = ServicioUsuario.EditarUsuario(
                         UsuarioModel(
                             iduser,
@@ -127,6 +134,26 @@ class EditarInformacionFragment : Fragment() {
                             if (item != null) {
                                 if(item.status =="exists"){ Toast.makeText(getContext(), "Ya esta registrado este email", Toast.LENGTH_SHORT).show()
                                 }else{
+                                    pref = requireContext().getSharedPreferences("usuario",AppCompatActivity.MODE_PRIVATE)
+
+                                    val id: Int = item.iduser.toString().toInt()
+                                    val nombre:  String = item.nombre.toString()
+                                    val apellido: String = item.apellido.toString()
+                                    val email: String = item.email.toString()
+                                    val password: String = item.contrasena.toString()
+                                    val telefono : String = item.telefono.toString()
+
+                                    val editor = pref?.edit()
+
+                                    editor?.putInt("Id", id)
+                                    editor?.putString("Image", item.imagen)
+                                    editor?.putString("Nombre", nombre)
+                                    editor?.putString("Apellido", apellido)
+                                    editor?.putString("Email", email)
+                                    editor?.putString("Password", password)
+                                    editor?.putString("Telefono", telefono)
+                                    editor?.commit()
+
                                     Toast.makeText(getContext(), "Usuario Editado", Toast.LENGTH_SHORT).show()
                                     requireActivity().supportFragmentManager.beginTransaction().replace((requireView().parent as ViewGroup).id, PerfilUsuarioFragment()).commit()
 

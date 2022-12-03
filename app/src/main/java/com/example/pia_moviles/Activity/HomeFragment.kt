@@ -1,4 +1,4 @@
-package com.example.pia_moviles
+package com.example.pia_moviles.Activity
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -11,11 +11,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pia_moviles.Adaptadores.ProductAdapter
+import com.example.pia_moviles.R
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+const val ARG_PARAM1 = "param1"
+const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
@@ -47,11 +48,7 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_home, container, false)
         var recyclerView: RecyclerView = view.findViewById(R.id.recyclerview)
-//        val  pref = requireContext().getSharedPreferences("usuario", Context.MODE_PRIVATE)
-//        var nombre = pref?.getString("Nombre","");
-//        var apellido = pref?.getString("Apellido","");
-//        var label1 = view?.findViewById<TextView>(R.id.inicio_recientes) as TextView
-//        label1?.setText(nombre + " " + apellido)
+//
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = GridLayoutManager(context,
         1,

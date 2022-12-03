@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.os.Handler
@@ -54,12 +55,6 @@ class SignupFragment : Fragment() {
     private val responseLauncher = registerForActivityResult(StartActivityForResult()){activityResult ->
         if(activityResult.resultCode == Activity.RESULT_OK){
             fotoRegistro2.setImageURI(activityResult.data?.data)
-            println(activityResult.data?.data)
-            val bitmaps = (fotoRegistro2.getDrawable() as BitmapDrawable).bitmap
-            val comprime = ByteArrayOutputStream()
-            bitmaps.compress(Bitmap.CompressFormat.JPEG, 10, comprime)
-            var imageByteArray: ByteArray = comprime.toByteArray()
-            fotoElegida = imageByteArray;
         }
     }
 
@@ -112,7 +107,12 @@ class SignupFragment : Fragment() {
             }else{
                 if(isValidPasswordFormat(password.text.toString())){
                     val ServicioUsuario: UsuarioServicio = RestEngine.getRestEngine().create(UsuarioServicio::class.java)
-                    val encodedString:String = Base64.getEncoder().encodeToString(fotoElegida)
+                   val bitmaps = (fotoRegistro2.getDrawable() as BitmapDrawable).bitmap
+                    val comprime = ByteArrayOutputStream()
+                    bitmaps.compress(Bitmap.CompressFormat.JPEG, 50, comprime)
+                    var imageByteArray: ByteArray = comprime.toByteArray()
+                    val encodedString:String = Base64.getEncoder().encodeToString(imageByteArray)
+
                     val result: Call<UsuarioModel> = ServicioUsuario.AgregarUsuario(
                         UsuarioModel(
                             null,
@@ -121,7 +121,7 @@ class SignupFragment : Fragment() {
                             correo.text.toString(),
                             password.text.toString(),
                             telefono.text.toString(),
-                            encodedString.toString(),
+                            encodedString,
                             null,
                             null,
                             null

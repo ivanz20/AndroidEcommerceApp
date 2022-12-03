@@ -1,5 +1,6 @@
 package com.example.pia_moviles
 
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,6 +11,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.pia_moviles.Activity.HomeFragment
+import com.example.pia_moviles.Activity.NavBar
 import com.example.pia_moviles.Modelos.UsuarioModel
 import com.example.pia_moviles.Servicios.RestEngine
 import com.example.pia_moviles.Servicios.UsuarioServicio
@@ -104,8 +107,13 @@ class LoginFragment : Fragment() {
                             editor?.commit()
 
                             Toast.makeText(getContext(), "Bienvenido", Toast.LENGTH_SHORT).show()
-                            var navRegister = activity as FragmentNavigation
-                            navRegister.navigateFrag(HomeFragment(),false)
+                            val intent = Intent(
+                                getActivity(),
+                                NavBar::class.java
+                            )
+                            startActivity(intent)
+//                            var navRegister = activity as FragmentNavigation
+//                            navRegister.navigateFrag(NavBar,false)
                         }
                     }
 

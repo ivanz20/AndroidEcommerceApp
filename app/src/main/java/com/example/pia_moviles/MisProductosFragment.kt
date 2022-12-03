@@ -33,6 +33,9 @@ class MisProductosFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    var ProductList = mutableListOf<ProductoModel>()
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,32 +61,34 @@ class MisProductosFragment : Fragment() {
             false)
 
 
-        val ProductList : ArrayList<ProductoModel>
-
         var pref: SharedPreferences? = null
         pref = getContext()?.getSharedPreferences("usuario", AppCompatActivity.MODE_PRIVATE)
 
         var iduser = pref?.getInt("Id",0)
+
         val ServiciosProducto: ProductosServicio = RestEngine.getRestEngine().create(
             ProductosServicio::class.java)
-        var result: Call<List<ProductoModel>> = ServiciosProducto.GetProductsByUser(33)
+        var result: Call<List<ProductoModel>> = ServiciosProducto.GetProductsByUser(33!!)
+
         result.enqueue(object : Callback<List<ProductoModel>> {
-
             override fun onResponse(call: Call<List<ProductoModel>>, response: Response<List<ProductoModel>>) {
-                val result = response.body()
-                if (result != null) {
-                    Toast.makeText(getContext(), "ola", Toast.LENGTH_SHORT).show()
+                var resp = response.body()
+                if(resp!= null){
+
+                    for(product in resp){
+                        ProductList.add(product)
+
+                    }
 
                 }
-                else {
-                    Toast.makeText(getContext(), "Hubo un error en la busqueda de tus productos", Toast.LENGTH_SHORT).show()
 
-                }
+
             }
 
             override fun onFailure(call: Call<List<ProductoModel>>, t: Throwable) {
                 println(t.toString())
             }
+
         })
 
 //        val adapter = MisProductosAdapter(ProductList)

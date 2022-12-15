@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".VerProducto">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/fotoVerProducto"
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:src="@drawable/suadera1"
+                tools:src="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/productoname"
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:gravity="center"
+                android:text="Nombre Producto"
+                android:textColor="@color/black"
+                android:textSize="34sp"
+                app:fontFamily="sans-serif-black"
+                app:textAllCaps="true" />
+
+            <TextView
+                android:id="@+id/descripproduct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin='20dp'
+                android:text=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel nisi ullamcorper, accumsan orci at, tincidunt ex. Vivamus sed finibus felis. Morbi ut nunc fringilla, ultrices nisl ac, laoreet turpis. Integer a gravida lorem, elementum venenatis arcu. Etiam tempor nec metus eu euismod. Mauris mollis odio id lectus maximus hendrerit. Praesent erat nis"
+                android:textColor="@color/black" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_addcarrito"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="30dp"
+                android:text="Agregar al carrito"
+                app:backgroundTint="@color/black"
+                app:cornerRadius="40dp"></com.google.android.material.button.MaterialButton>
+
+            <TextView
+                android:id="@+id/califa"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin='10dp'
+                android:gravity="center"
+                android:text="Calificacion 4 de 5 estrellas"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:gravity="center"
+                android:text="COmentarios"
+                android:textColor="@color/black"
+                android:textSize="34sp"
+                app:fontFamily="sans-serif-black"
+                app:textAllCaps="true" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_comentarios"
+                android:layout_width="match_parent"
+                android:layout_height="300dp" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="Deja tu comentario"
+                android:textColor="@color/black" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_margin='20dp'
+                >
+
+                <EditText
+                    android:id="@+id/editTextTextMultiLine"
+                    android:layout_width="259dp"
+                    android:layout_height="60dp"
+                    android:ems="10"
+                    android:gravity="start|top"
+                    android:inputType="textMultiLine" />
+
+                <Spinner
+                    android:id="@+id/spinnercalificacion"
+                    android:layout_width="110dp"
+                    android:layout_height="60dp"
+                    android:background="#CCC"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.497"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textInputLayout3"
+                    tools:ignore="MissingConstraints"></Spinner>
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_addcoment"
+                android:layout_width="352dp"
+                android:layout_height="65dp"
+                android:layout_margin='25dp'
+                android:text="Comentar"
+                app:backgroundTint="@color/black"
+                app:cornerRadius="40dp"></com.google.android.material.button.MaterialButton>
+
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>

@@ -68,7 +68,7 @@ class MisProductosFragment : Fragment() {
 
         val ServiciosProducto: ProductosServicio = RestEngine.getRestEngine().create(
             ProductosServicio::class.java)
-        var result: Call<List<ProductoModel>> = ServiciosProducto.GetProductsByUser(33!!)
+        var result: Call<List<ProductoModel>> = ServiciosProducto.GetProductsByUser(iduser)
 
         result.enqueue(object : Callback<List<ProductoModel>> {
             override fun onResponse(call: Call<List<ProductoModel>>, response: Response<List<ProductoModel>>) {
@@ -79,6 +79,9 @@ class MisProductosFragment : Fragment() {
                         ProductList.add(product)
 
                     }
+
+                    val adapter = MisProductosAdapter(ProductList as ArrayList<ProductoModel>)
+                    recyclerView.adapter = adapter
 
                 }
 
@@ -91,8 +94,7 @@ class MisProductosFragment : Fragment() {
 
         })
 
-//        val adapter = MisProductosAdapter(ProductList)
-//        recyclerView.adapter = adapter
+
 
 
         return view

@@ -21,7 +21,7 @@
         <ImageView
             android:id="@+id/product_image"
             android:layout_width="160dp"
-            android:layout_height="wrap_content"
+            android:layout_height="160dp"
             android:src="@drawable/suadera1"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
@@ -30,18 +30,17 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="120dp"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/product_title"
+                android:id="@+id/coment_card"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:padding="5dp"
                 android:text="Titulo"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                android:padding="5dp"
-                >
-            </TextView>
+                app:autoSizeTextType="uniform"></TextView>
 
             <TextView
                 android:id="@+id/product_price"

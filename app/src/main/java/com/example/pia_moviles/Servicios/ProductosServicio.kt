@@ -12,7 +12,7 @@ interface ProductosServicio {
     fun AgregarProducto(@Body producto: ProductoModel): Call<ProductoModel>
 
     @GET("GetByID.php")
-    fun GetProductById(@Query("id") id: Int?): Call<ProductoModel>
+    fun GetProductById(@Query("idproducto") idproducto: Int?): Call<ProductoModel>
 
     @GET("Busqueda.php")
     fun SearchByName(@Query("nombre") id: String?): Call<List<ProductoModel>>

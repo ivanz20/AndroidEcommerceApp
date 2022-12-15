@@ -23,6 +23,13 @@
         <item>Pantalones</item>
         <item>Sombreros</item>
     </string-array>
+    <string-array name="calif">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
     <string name="title_activity_nav_bar">NavBar</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

@@ -35,7 +35,7 @@ class MisProductosAdapter(private val ProductList : ArrayList<ProductoModel>):Re
         val img2 = Producto.imagen?.decodeBase64()?.toByteArray()
         val imageBitmap: Bitmap? = img2?.let { BitmapFactory.decodeByteArray(img2, 0, it.size) }
         holder.productTile.text = Producto.nombreproducto.toString()
-        holder.productPrice.text = Producto.precio.toString()
+        holder.productPrice.text = "$" + Producto.precio.toString() + " pesos"
         holder.productImage.setImageBitmap(imageBitmap)
 
     }
@@ -48,7 +48,7 @@ class MisProductosAdapter(private val ProductList : ArrayList<ProductoModel>):Re
     class ProductViewHolder(view: View):RecyclerView.ViewHolder(view){
 
             var productImage: ImageView = view.findViewById(R.id.product_image)
-            var productTile: TextView = view.findViewById(R.id.product_title)
+            var productTile: TextView = view.findViewById(R.id.coment_card)
             var productPrice: TextView = view.findViewById(R.id.product_price)
 
     }

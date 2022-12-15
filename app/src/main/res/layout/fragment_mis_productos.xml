@@ -18,18 +18,13 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="122dp"
-                android:layout_height="100dp"
-                android:src="@drawable/back" />
 
             <TextView
                 android:id="@+id/textView"
-                android:layout_width="289dp"
+                android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:text="Mis Productos"
-                android:paddingTop ="24sp"
+                android:paddingTop="24sp"
+                android:text="   Mis Productos"
                 android:textSize="34sp"
                 app:fontFamily="sans-serif-black" />
 

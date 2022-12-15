@@ -44,9 +44,9 @@
             android:autofillHints=""
             android:ems="10"
             android:fontFamily="sans-serif-medium"
+            android:hint="@string/correo_electr_nico"
             android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:hint="@string/correo_electr_nico" />
+            android:minHeight="48dp" />
 
         <EditText
             android:id="@+id/editTextTextPassword2"

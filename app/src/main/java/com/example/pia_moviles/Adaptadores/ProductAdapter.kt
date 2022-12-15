@@ -30,7 +30,7 @@ class ProductAdapter():RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() 
 
     class ProductViewHolder(view: View):RecyclerView.ViewHolder(view){
             var productImage: ImageView = view.findViewById(R.id.product_image)
-            var productTile: TextView = view.findViewById(R.id.product_title)
+            var productTile: TextView = view.findViewById(R.id.coment_card)
             var productPrice: TextView = view.findViewById(R.id.product_price)
     }
 }

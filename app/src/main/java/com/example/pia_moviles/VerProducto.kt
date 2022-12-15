@@ -17,6 +17,7 @@ import com.example.pia_moviles.Adaptadores.MisProductosAdapter
 import com.example.pia_moviles.Modelos.ComentarioModel
 import com.example.pia_moviles.Modelos.ProductoModel
 import com.example.pia_moviles.Modelos.UsuarioModel
+import com.example.pia_moviles.Servicios.ComentariosServicio
 import com.example.pia_moviles.Servicios.ProductosServicio
 import com.example.pia_moviles.Servicios.RestEngine
 import com.example.pia_moviles.Servicios.UsuarioServicio
@@ -57,7 +58,7 @@ class VerProducto : Fragment() {
         var view = inflater.inflate(R.layout.fragment_ver_producto, container, false)
         val spinner = view?.findViewById<Spinner>(R.id.spinnercalificacion)
         val calif = resources.getStringArray(R.array.calif)
-        val idproducto = 2
+        val idproducto = 3
 
         val SerProducto : ProductosServicio  = RestEngine.getRestEngine().create(
             ProductosServicio::class.java)
@@ -97,19 +98,86 @@ class VerProducto : Fragment() {
             GridLayoutManager.VERTICAL,
             false)
 
-        val auxmodel = ComentarioModel();
-        for (i in 6 downTo 0 step 1) {
-            auxmodel.comentario = "Muy feo la verdad no me gusto esta muy incompelto xd no lo compren mensos"
-            auxmodel.usuario = "ivanzv"
-            auxmodel.calificacion = 4
-            auxmodel.iduser = 33
-            auxmodel.idproducto = 1
+        val SerComentario : ComentariosServicio  = RestEngine.getRestEngine().create(
+            ComentariosServicio::class.java)
 
-            ComentsList.add(auxmodel)
-        }
+        val resultado: Call<List<ComentarioModel>>  = SerComentario.GetByProductId(idproducto)
+
+        resultado.enqueue(object : Callback<List<ComentarioModel>> {
+
+            override fun onResponse(call: Call<List<ComentarioModel>>, response: Response<List<ComentarioModel>>) {
+                val item = response.body()
+                if (item != null) {
+                    for(comment in item){
+                        ComentsList.add(comment)
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<List<ComentarioModel>>, t: Throwable) {
+                println(t.toString())
+            }
+        })
 
         val adapter = ComentariosAdapter(ComentsList as ArrayList<ComentarioModel>)
         recyclerView.adapter = adapter
+
+        view.findViewById<Button>(R.id.btn_addcoment).setOnClickListener {
+            val comentario = view.findViewById<EditText>(R.id.comentariotext) as EditText
+            val calif = view.findViewById<Spinner>(R.id.spinnercalificacion)
+            var ComentsList2 = mutableListOf<ComentarioModel>()
+
+            val resultado3: Call<ComentarioModel>  = SerComentario.AgregarComentario(
+                ComentarioModel(
+                    null,
+                    idproducto,
+                    34,
+                    comentario.text.toString(),
+                    "Nombre Completo",
+                    calif.selectedItem.toString().toInt()
+                )
+            )
+            resultado3.enqueue(object : Callback<ComentarioModel> {
+
+                override fun onResponse(call: Call<ComentarioModel>, response: Response<ComentarioModel>) {
+                    val item = response.body()
+                    if (item != null) {
+                        Toast.makeText(getContext(), "Comentario registrado", Toast.LENGTH_SHORT).show()
+                        val resultado4: Call<List<ComentarioModel>>  = SerComentario.GetByProductId(idproducto)
+
+                        resultado4.enqueue(object : Callback<List<ComentarioModel>> {
+
+                            override fun onResponse(call: Call<List<ComentarioModel>>, response: Response<List<ComentarioModel>>) {
+                                val item = response.body()
+                                if (item != null) {
+                                    for(comment in item){
+                                        ComentsList2.add(comment)
+                                    }
+                                    val adapter2 = ComentariosAdapter(ComentsList2 as ArrayList<ComentarioModel>)
+                                    recyclerView.adapter = adapter2
+                                    comentario.setText("")
+                                }
+                            }
+
+                            override fun onFailure(call: Call<List<ComentarioModel>>, t: Throwable) {
+                                println(t.toString())
+                            }
+                        })
+
+
+
+                    }else{
+                        Toast.makeText(getContext(), "Error al realizar tu comentario", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<ComentarioModel>, t: Throwable) {
+                    println(t.toString())
+                }
+            })
+
+
+        }
         // Inflate the layout for this fragment
         return view
     }

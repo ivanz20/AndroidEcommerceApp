@@ -34,7 +34,7 @@ class ComentariosAdapter(private val ComentarioList : ArrayList<ComentarioModel>
         val comentario : ComentarioModel = ComentarioList[position]
 
         holder.TheComment.text = comentario.comentario.toString();
-        holder.TheUser.text = comentario.usuario.toString();
+        holder.TheUser.text = comentario.username.toString();
         holder.TheRate.text = comentario.calificacion.toString() + " de 5 estrellas";
 
 

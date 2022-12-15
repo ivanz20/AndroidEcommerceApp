@@ -9,7 +9,7 @@ class MainActivity : AppCompatActivity(), FragmentNavigation {
         setContentView(R.layout.activity_main)
 
         supportFragmentManager.beginTransaction()
-            .add(R.id.container,VerProducto())
+            .add(R.id.container,MisProductosFragment())
             .commit()
     }
 

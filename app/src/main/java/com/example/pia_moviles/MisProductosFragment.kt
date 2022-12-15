@@ -68,7 +68,8 @@ class MisProductosFragment : Fragment() {
 
         val ServiciosProducto: ProductosServicio = RestEngine.getRestEngine().create(
             ProductosServicio::class.java)
-        var result: Call<List<ProductoModel>> = ServiciosProducto.GetProductsByUser(iduser)
+
+        var result: Call<List<ProductoModel>> = ServiciosProducto.GetProductsByUser(34)
 
         result.enqueue(object : Callback<List<ProductoModel>> {
             override fun onResponse(call: Call<List<ProductoModel>>, response: Response<List<ProductoModel>>) {

@@ -34,23 +34,25 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/coment_card"
+                android:id="@+id/tituloproducto"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:padding="5dp"
+                android:layout_height="wrap_content"
                 android:text="Titulo"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                app:autoSizeTextType="uniform"></TextView>
+                android:padding="5dp"
+                app:autoSizeTextType="uniform"
+                >
+            </TextView>
 
             <TextView
                 android:id="@+id/product_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="6dp"
-                android:text="Precio"
-                android:textAppearance="?attr/textAppearanceBody2">
+                android:text="Costo"
 
-            </TextView>
+
+                android:textAppearance="?attr/textAppearanceBody2"></TextView>
             <TextView
                 android:id="@+id/idproductotarjeta"
                 android:layout_width="match_parent"
@@ -60,30 +62,14 @@
                 >
 
             </TextView>
-
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/EditarArticulo"
+                android:id="@+id/VerArtiInicio"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="2dp"
-                android:text="Editar"
+                android:text="Ver Articulo"
                 app:backgroundTint="@color/black"
-                app:cornerRadius="40dp">
-
-            </com.google.android.material.button.MaterialButton>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/EliminarArticulo"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="2dp"
-                android:text="Eliminar"
-                app:backgroundTint="@color/black"
-                app:cornerRadius="40dp">
-
-            </com.google.android.material.button.MaterialButton>
-
-
+                app:cornerRadius="40dp"></com.google.android.material.button.MaterialButton>
         </LinearLayout>
 
     </LinearLayout>

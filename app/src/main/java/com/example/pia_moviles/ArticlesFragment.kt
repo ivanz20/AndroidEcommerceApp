@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pia_moviles.Activity.HomeFragment
 import com.example.pia_moviles.Adaptadores.ProductAdapter2
+import com.example.pia_moviles.Modelos.ProductoModel
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -48,9 +49,9 @@ class ArticlesFragment : Fragment() {
             2,
             GridLayoutManager.VERTICAL,
             false)
-
-        val adapter = ProductAdapter2()
-        recyclerArticulos.adapter = adapter
+//
+//        val adapter = ProductAdapter2(ProductList as ArrayList<ProductoModel>)
+//        recyclerArticulos.adapter = adapter
 
 
         vista.findViewById<ImageButton>(R.id.atrasArticulos).setOnClickListener{

@@ -18,4 +18,6 @@ interface UsuarioServicio {
     @POST("EditarUsuario.php")
     fun EditarUsuario(@Body user: UsuarioModel): Call<UsuarioModel>
 
+
+
 }

@@ -4,20 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MisProductosFragment">
+    tools:context=".MisProductosFragment"
+    android:background="@color/white"
+    >
 
     <!-- TODO: Update blank fragment layout -->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/white"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
-
+            android:orientation="vertical"
+            android:background="@color/white"
+            >
 
             <TextView
                 android:id="@+id/textView"
@@ -28,29 +33,39 @@
                 android:textSize="34sp"
                 app:fontFamily="sans-serif-black" />
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_actualizar"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:text="Actualizar"
+                app:backgroundTint="@color/black"
+                app:cornerRadius="40dp"></com.google.android.material.button.MaterialButton>
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:background="#fff"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+
+                >
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_misproductos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:scrollbars="none"
+                    app:fastScrollEnabled="false" />
+
+            </androidx.core.widget.NestedScrollView>
+
         </LinearLayout>
-
     </LinearLayout>
-
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="100dp"
-        android:background="#fff"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
-
-        >
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_misproductos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:scrollbars="none"
-            app:fastScrollEnabled="false" />
-
-    </androidx.core.widget.NestedScrollView>
 
 </FrameLayout>

@@ -12,9 +12,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.pia_moviles.EditarInformacionFragment
-import com.example.pia_moviles.R
-import com.example.pia_moviles.RegistroProductosFragment
+import com.example.pia_moviles.*
 import okio.ByteString.Companion.decodeBase64
 
 
@@ -64,6 +62,12 @@ class PerfilUsuarioFragment : Fragment() {
         view?.findViewById<Button>(R.id.btn_registrarprod)?.setOnClickListener{
             requireActivity().supportFragmentManager.beginTransaction().replace((requireView().parent as ViewGroup).id, RegistroProductosFragment()).commit()
         }
+
+        view?.findViewById<Button>(R.id.btnMisProductos)?.setOnClickListener{
+            requireActivity().supportFragmentManager.beginTransaction().replace((requireView().parent as ViewGroup).id, MisProductosFragment()).commit()
+
+        }
+
         // Inflate the layout for this fragment
         return view
     }

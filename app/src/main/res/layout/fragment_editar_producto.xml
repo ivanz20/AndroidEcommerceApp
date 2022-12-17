@@ -4,10 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegistroProductosFragment"
-    android:background="#27272B"
-    >
-
+    tools:context=".EditarProducto"
+    android:background="#27272B">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,7 +13,7 @@
 
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/imageView2editar"
             android:layout_width="130dp"
             android:layout_height="130dp"
             android:layout_marginTop="24dp"
@@ -40,10 +38,10 @@
             app:boxCornerRadiusTopStart="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2">
+            app:layout_constraintTop_toBottomOf="@+id/imageView2editar">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/nombreproducto"
+                android:id="@+id/nombreproductoeditar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-black"
@@ -72,7 +70,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/descripcionproducto"
+                android:id="@+id/descripcionproductoeditar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-black"
@@ -101,7 +99,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/precio"
+                android:id="@+id/precioeditar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-black"
@@ -127,8 +125,6 @@
                 android:id="@+id/spinnercategorias"
                 android:layout_width="300dp"
                 android:layout_height="56dp"
-                android:layout_marginTop="10dp"
-                android:background="#FFFF"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
@@ -138,7 +134,7 @@
 
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnproducto"
+            android:id="@+id/btnimageneditar"
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:layout_marginStart="60dp"
@@ -155,19 +151,19 @@
             app:strokeWidth="2dp"></com.google.android.material.button.MaterialButton>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnregistrar"
+            android:id="@+id/btneditarproducto"
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:layout_marginStart="60dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="60dp"
-            android:text="Registrar producto"
+            android:text="Editar producto"
             android:textColor="#FFFFFF"
             app:backgroundTint="@color/black"
             app:cornerRadius="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnproducto"
+            app:layout_constraintTop_toBottomOf="@+id/btnimageneditar"
             app:strokeColor="#FFFFFF"
             app:strokeWidth="2dp"></com.google.android.material.button.MaterialButton>
 
@@ -184,9 +180,16 @@
             app:cornerRadius="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnregistrar"
+            app:layout_constraintTop_toBottomOf="@+id/btneditarproducto"
             app:strokeColor="#FFFFFF"
             app:strokeWidth="2dp"></com.google.android.material.button.MaterialButton>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+
 </LinearLayout>

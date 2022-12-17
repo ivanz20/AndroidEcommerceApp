@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".Activity.HomeFragment"
+    android:background="@color/white"
     >
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -13,10 +14,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".HomeFragment"
+        android:background="@color/white"
         >
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            >
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -67,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             android:padding="5dp"
-            android:text="Más comprados"
+            android:text="Mejor Calificados"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
 
             app:fontFamily="sans-serif-black"

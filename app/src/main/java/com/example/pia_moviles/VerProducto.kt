@@ -1,5 +1,6 @@
 package com.example.pia_moviles
 
+import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
@@ -58,7 +59,11 @@ class VerProducto : Fragment() {
         var view = inflater.inflate(R.layout.fragment_ver_producto, container, false)
         val spinner = view?.findViewById<Spinner>(R.id.spinnercalificacion)
         val calif = resources.getStringArray(R.array.calif)
-        val idproducto = 3
+
+        var pref: SharedPreferences? = null
+        pref = getContext()?.getSharedPreferences("producto", AppCompatActivity.MODE_PRIVATE)
+        var idproducto = pref?.getInt("idproducto",0)
+
 
         val SerProducto : ProductosServicio  = RestEngine.getRestEngine().create(
             ProductosServicio::class.java)
@@ -74,6 +79,8 @@ class VerProducto : Fragment() {
                     view.findViewById<TextView>(R.id.descripproduct).setText(item.descripcion.toString())
                     val calificacion = "Calificación " + item.calificacion.toString() + " de 5 estrellas"
                     view.findViewById<TextView>(R.id.califa).setText(calificacion)
+                    var precio = "$" + item.precio.toString() + " MXN"
+                    view.findViewById<TextView>(R.id.precioproducto).setText(precio)
 
                 }else{
                     Toast.makeText(getContext(), "Hubo un error al consultar el producto", Toast.LENGTH_SHORT).show()
@@ -127,13 +134,18 @@ class VerProducto : Fragment() {
             val calif = view.findViewById<Spinner>(R.id.spinnercalificacion)
             var ComentsList2 = mutableListOf<ComentarioModel>()
 
+            var pref: SharedPreferences? = null
+            pref = getContext()?.getSharedPreferences("usuario", AppCompatActivity.MODE_PRIVATE)
+            var nameuser = pref?.getString("Nombre","") + " " + pref?.getString("Apellido","")
+            var iduser = pref?.getInt("Id",0)
+
             val resultado3: Call<ComentarioModel>  = SerComentario.AgregarComentario(
                 ComentarioModel(
                     null,
                     idproducto,
-                    34,
+                    iduser,
                     comentario.text.toString(),
-                    "Nombre Completo",
+                    nameuser,
                     calif.selectedItem.toString().toInt()
                 )
             )

@@ -21,7 +21,7 @@
         <ImageView
             android:id="@+id/product_image"
             android:layout_width="160dp"
-            android:layout_height="wrap_content"
+            android:layout_height="160dp"
             android:src="@drawable/suadera1"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
@@ -36,10 +36,13 @@
             <TextView
                 android:id="@+id/coment_card"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:text="Titulo"
+                android:textSize="18dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                 android:padding="5dp"
+
+
                 >
             </TextView>
 
@@ -52,6 +55,14 @@
 
 
                 android:textAppearance="?attr/textAppearanceBody2"></TextView>
+            <TextView
+                android:id="@+id/idproductotarjeta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:visibility = "gone"
+                ></TextView>
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/VerArtiInicio"
                 android:layout_width="match_parent"

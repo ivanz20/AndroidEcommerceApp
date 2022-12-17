@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -69,7 +70,7 @@ class MisProductosFragment : Fragment() {
         val ServiciosProducto: ProductosServicio = RestEngine.getRestEngine().create(
             ProductosServicio::class.java)
 
-        var result: Call<List<ProductoModel>> = ServiciosProducto.GetProductsByUser(34)
+        var result: Call<List<ProductoModel>> = ServiciosProducto.GetProductsByUser(iduser)
 
         result.enqueue(object : Callback<List<ProductoModel>> {
             override fun onResponse(call: Call<List<ProductoModel>>, response: Response<List<ProductoModel>>) {
@@ -93,9 +94,47 @@ class MisProductosFragment : Fragment() {
                 println(t.toString())
             }
 
+
         })
 
+        view.findViewById<Button>(R.id.btn_actualizar).setOnClickListener{
 
+            var pref: SharedPreferences? = null
+            pref = getContext()?.getSharedPreferences("usuario", AppCompatActivity.MODE_PRIVATE)
+
+            var iduser = pref?.getInt("Id",0)
+
+
+            var ProductList2 = mutableListOf<ProductoModel>()
+
+            var result3: Call<List<ProductoModel>> = ServiciosProducto.GetProductsByUser(iduser)
+
+            result3.enqueue(object : Callback<List<ProductoModel>> {
+                override fun onResponse(call: Call<List<ProductoModel>>, response: Response<List<ProductoModel>>) {
+                    var resp = response.body()
+                    if(resp!= null){
+
+                        for(product in resp){
+                            ProductList2.add(product)
+
+                        }
+
+                        val adapter = MisProductosAdapter(ProductList2 as ArrayList<ProductoModel>)
+                        recyclerView.adapter = adapter
+
+                    }
+
+
+                }
+
+                override fun onFailure(call: Call<List<ProductoModel>>, t: Throwable) {
+                    println(t.toString())
+                }
+
+
+            })
+
+        }
 
 
         return view

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:background="@color/white"
     tools:context=".VerProducto">
 
     <!-- TODO: Update blank fragment layout -->
@@ -33,14 +33,32 @@
                 android:text="Nombre Producto"
                 android:textColor="@color/black"
                 android:textSize="34sp"
+                android:layout_margin= "30dp"
+            app:fontFamily="sans-serif-black"
+                app:textAllCaps="true"
+                app:autoSizeTextType="uniform"/>
+
+            <TextView
+                android:id="@+id/precioproducto"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:text="Nombre Producto"
+                android:textColor="@color/black"
+                android:textSize="14dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"
                 app:fontFamily="sans-serif-black"
-                app:textAllCaps="true" />
+                app:textAllCaps="true"
+                app:autoSizeTextType="uniform"/>
 
             <TextView
                 android:id="@+id/descripproduct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin='20dp'
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
                 android:text=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel nisi ullamcorper, accumsan orci at, tincidunt ex. Vivamus sed finibus felis. Morbi ut nunc fringilla, ultrices nisl ac, laoreet turpis. Integer a gravida lorem, elementum venenatis arcu. Etiam tempor nec metus eu euismod. Mauris mollis odio id lectus maximus hendrerit. Praesent erat nis"
                 android:textColor="@color/black" />
 

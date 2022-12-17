@@ -11,6 +11,6 @@ data class ProductoModel (
         var iduser:Int? = null,
         val status: String?=null,
         var calificacion:Int? = null,
-
+        var publicado: Boolean?= null
 
         )

@@ -37,12 +37,12 @@ class NavBar : AppCompatActivity() {
 
         setSupportActionBar(binding.appBarNavBar.toolbar)
 
-        val nombre =
-
-        binding.appBarNavBar.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
+//        val nombre =
+//
+//        binding.appBarNavBar.fab.setOnClickListener { view ->
+//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                .setAction("Action", null).show()
+//        }
 
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView

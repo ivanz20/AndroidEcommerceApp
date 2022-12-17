@@ -1,20 +1,24 @@
 package com.example.pia_moviles
 
+import android.Manifest
+import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.pia_moviles.Activity.ui.gallery.PerfilUsuarioFragment
 import com.example.pia_moviles.Adaptadores.ComentariosAdapter
-import com.example.pia_moviles.Adaptadores.MisProductosAdapter
 import com.example.pia_moviles.Modelos.ComentarioModel
 import com.example.pia_moviles.Modelos.ProductoModel
 import com.example.pia_moviles.Modelos.UsuarioModel
@@ -26,6 +30,7 @@ import okio.ByteString.Companion.decodeBase64
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -42,6 +47,7 @@ class VerProducto : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     var ComentsList = mutableListOf<ComentarioModel>()
+    var idvendedor = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,6 +70,37 @@ class VerProducto : Fragment() {
         pref = getContext()?.getSharedPreferences("producto", AppCompatActivity.MODE_PRIVATE)
         var idproducto = pref?.getInt("idproducto",0)
 
+        checkPermissions()
+
+        var telefonuki = ""
+
+        view.findViewById<Button>(R.id.btn_addcarrito).setOnClickListener{
+            val UserServ : UsuarioServicio = RestEngine.getRestEngine().create(
+                UsuarioServicio::class.java)
+            val resultadouser: Call<UsuarioModel> = UserServ.GetUserById(idvendedor)
+            resultadouser.enqueue(object : Callback<UsuarioModel>{
+                override fun onResponse(
+                    call: Call<UsuarioModel>,
+                    response: Response<UsuarioModel>
+                ) {
+                    val item = response.body()
+                    if (item != null) {
+                        val callIntent = Intent(Intent.ACTION_CALL)
+                        callIntent.data = Uri.parse("tel:" + item.telefono.toString())
+                        startActivity(callIntent)
+                    }else{
+                        Toast.makeText(getContext(), "Hubo un error al consultar el usuario", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<UsuarioModel>, t: Throwable) {
+                    TODO("Not yet implemented")
+                }
+
+            })
+
+        }
+
 
         val SerProducto : ProductosServicio  = RestEngine.getRestEngine().create(
             ProductosServicio::class.java)
@@ -81,6 +118,7 @@ class VerProducto : Fragment() {
                     view.findViewById<TextView>(R.id.califa).setText(calificacion)
                     var precio = "$" + item.precio.toString() + " MXN"
                     view.findViewById<TextView>(R.id.precioproducto).setText(precio)
+                    idvendedor= item.iduser.toString().toInt()
 
                 }else{
                     Toast.makeText(getContext(), "Hubo un error al consultar el producto", Toast.LENGTH_SHORT).show()
@@ -194,6 +232,11 @@ class VerProducto : Fragment() {
         return view
     }
 
+    private fun checkPermissions(){
+        if(ActivityCompat.checkSelfPermission(requireContext(),Manifest.permission.CALL_PHONE)!= PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.CALL_PHONE),101)
+        }
+    }
     companion object {
         /**
          * Use this factory method to create a new instance of

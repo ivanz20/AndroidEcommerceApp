@@ -18,6 +18,7 @@ interface UsuarioServicio {
     @POST("EditarUsuario.php")
     fun EditarUsuario(@Body user: UsuarioModel): Call<UsuarioModel>
 
-
+    @GET("GetUserById.php")
+    fun GetUserById(@Query ("iduser")iduser:Int?):Call<UsuarioModel>
 
 }

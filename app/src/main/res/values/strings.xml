@@ -23,6 +23,10 @@
         <item>Pantalones</item>
         <item>Sombreros</item>
     </string-array>
+    <string-array name="busqueda">
+        <item>Mas Recientes</item>
+        <item>Mejor Calificados</item>
+    </string-array>
     <string-array name="calif">
         <item>1</item>
         <item>2</item>

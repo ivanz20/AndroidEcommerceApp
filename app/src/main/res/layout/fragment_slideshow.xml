@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="72dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="24dp"
         android:gravity="center"
         android:text="Buscar Producto"
@@ -24,37 +24,38 @@
         app:layout_constraintTop_toTopOf="parent"
         app:textAllCaps="true" />
 
-    <EditText
-        android:id="@+id/search_text"
-        android:layout_width="350dp"
-        android:layout_height="62dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productoname2" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_buscar"
+    <LinearLayout
+        android:id="@+id/grill"
         android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:text="BUSCAR"
-        app:backgroundTint="@color/black"
-        app:cornerRadius="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_text"></com.google.android.material.button.MaterialButton>
+        android:layout_height="80dp"
+        android:layout_marginTop="1dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/productoname2">
+
+        <EditText
+            android:id="@+id/search_text"
+            android:layout_width="200dp"
+            android:layout_height="62dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_buscar"
+            android:layout_width="110dp"
+            android:layout_height="65dp"
+            android:layout_marginEnd="32dp"
+            android:text="BUSCAR"
+            app:backgroundTint="@color/black"
+            app:cornerRadius="40dp"></com.google.android.material.button.MaterialButton>
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="300dp"
-        app:layout_constraintTop_toBottomOf="@+id/btn_buscar"
+        android:layout_marginTop="200dp"
+        app:layout_constraintTop_toBottomOf="@+id/grill"
         tools:layout_editor_absoluteX="1dp">
 
         <LinearLayout
